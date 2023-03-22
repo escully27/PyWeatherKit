@@ -38,6 +38,34 @@ class WKClient:
     # *timezone* is a string representing the timezone to use.
     # *dataSets* is a list of strings representing the data sets to return which can include:
     # currentWeather, forecastDaily, forecastHourly, forecastNextHour, or weatherAlerts
+
+    def get_historical_weather(self, latitude: float, longitude: float, language: str = "en", timezone: str = "America/New_York",
+                    dataSets: list[str] = ["currentWeather", "forecastDaily"]) -> dict:
+        if self.token.expiry_time < time():
+            raise TokenExpiredError("Token has expired")
+        url = f"https://weatherkit.apple.com/api/v1/weather/{language}/{latitude}/{longitude}"
+        headers = {
+            "Authorization": f"Bearer {self.token.token}"
+        }
+        params = {
+            "&currentAsOf": "2022-01-01T00:00:00Z",
+            "dailyStart": "2022-01-01T00:00:00Z",
+            "dailyEnd": "2022-01-07T00:00:00Z",
+            "timezone": timezone,
+            "dataSets": ",".join(dataSets)
+        }
+        response = requests.get(url, headers=headers, params=params)
+
+        return response.json()
+
+    # https://weatherkit.apple.com/api/v1/weather/en/41.029/-74.642
+    # ?dataSets=forecastDaily
+    # &currentAsOf=2022-01-01T00:00:00Z
+    # &dailyStart=2022-01-01T00:00:00Z
+    # &dailyEnd=2022-01-07T00:00:00Z
+    # &timezone=Americas/Los_Angeles
+    # &countryCode=US
+
     def get_weather(self, latitude: float, longitude: float, language: str = "en", timezone: str = "America/New_York",
                     dataSets: list[str] = ["currentWeather", "forecastDaily"]) -> dict:
         if self.token.expiry_time < time():
