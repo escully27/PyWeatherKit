@@ -6,6 +6,7 @@ setup(
     packages=['PyWeatherKit_escullz'],
     url='https://github.com/escully27/PyWeatherKit',
     license='Apache 2',
+    download_url="https://github.com/escully27/PyWeatherKit/archive/refs/tags/PyWeatherKit_escullz_2.tar.gz",
     author='Emmett Scully',
     author_email='emmett@trackster.us',
     description='A third-party client for Apple\'s WeatherKit API without requirement for PyJWT',
