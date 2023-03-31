@@ -3,7 +3,7 @@ from setuptools import setup
 setup(
     name='PyWeatherKit_escullz',
     version='0.0.1',
-    packages=['weatherkit'],
+    packages=['PyWeatherKit_escullz'],
     url='https://github.com/escully27/PyWeatherKit',
     license='Apache 2',
     author='Emmett Scully',
