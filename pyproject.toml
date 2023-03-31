@@ -13,11 +13,11 @@ license = {file = "LICENSE"}
 keywords = ["weather", "kit", "weatherkit", "api"]
 dependencies = [
     "requests >=2.6",
-    "pyjwt >= 2.4.0",
+    "pyjwt >= 2.0.0",
 ]
 
 [project.urls]
 Home = "https://github.com/davecom/PyWeatherKit"
 
-[tool.flit.module]
+[tool.flit.module] 
 name = "weatherkit"
